@@ -6,10 +6,24 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from src.libs.middlerwares import add_print_request_id_mid
+from src.config import SENTRY_DSN
+import sentry_sdk
 
 
 def create_app():
     app = FastAPI(title="我的fastapi服务", debug=True)  # debug=True直接返回500错误信息
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        # Add data like request headers and IP for users,
+        # see https://docs.sentry.io/platforms/python/data-management/data-collected/ for more info
+        send_default_pii=True,
+        sample_rate=1.0
+    )
+
+    @app.get("/sentry-debug")
+    async def trigger_error():
+        division_by_zero = 1 / 0
+
     origins = [
         "http://localhost.tiangolo.com",
         "https://localhost.tiangolo.com",
