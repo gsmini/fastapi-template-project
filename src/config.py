@@ -5,6 +5,8 @@ env = os.getenv
 
 ENVIRONMENT = env("ENVIRONMENT", "dev")
 DEBUG = False
+# REDIS_URI
+REDIS_URI = env("REDIS_URI", "")  # REDIS_URI = "redis://xxxxx!@172.16.0.234:8635/0"
 
 # MySQL配置
 SQLALCHEMY_DATABASE_URI = env("SQLALCHEMY_DATABASE_URI",
