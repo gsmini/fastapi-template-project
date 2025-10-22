@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from src.controllers import init_routes
 
 
 def create_app():
     app = FastAPI(title="我的fastapi服务", debug=True)
-
     origins = [
         "http://localhost.tiangolo.com",
         "https://localhost.tiangolo.com",
@@ -19,4 +19,5 @@ def create_app():
         allow_methods=["*"],
         allow_headers=["*"],
     )
+    init_routes(app)
     return app
