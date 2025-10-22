@@ -1,11 +1,11 @@
 from src.controllers import init_routes
 from src.libs.exceptions import APIException
 from src.libs.logging import logger
-
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from fastapi.requests import Request
+
+from src.libs.middlerwares import add_print_request_id_mid
 
 
 def create_app():
@@ -35,5 +35,6 @@ def create_app():
         logger.error(f"[exception]|request_id:{request.headers.get('request_id')}|resp={resp}")
         return JSONResponse(content=resp, status_code=e.http_code)
 
+    add_print_request_id_mid(app)
     init_routes(app)
     return app
