@@ -1,6 +1,11 @@
+from src.controllers import init_routes
+from src.libs.exceptions import APIException
+from src.libs.logging import logger
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.controllers import init_routes
+from fastapi.responses import JSONResponse
+from fastapi.requests import Request
 
 
 def create_app():
@@ -19,5 +24,16 @@ def create_app():
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    @app.exception_handler(APIException)
+    async def handle_error(request: Request, e: APIException):
+        resp = {
+            "code": e.error_code,
+            "message": e.message,
+            "data": {}
+        }
+        logger.error(f"[exception]|request_id:{request.headers.get('request_id')}|resp={resp}")
+        return JSONResponse(content=resp, status_code=e.http_code)
+
     init_routes(app)
     return app
