@@ -10,3 +10,10 @@
 ```python
 python main.py 
 ```
+
+
+# docker build 
+```python
+docker build . -t fastapi-template:v1
+docker run -p 8000:8000  fastapi-template:v1
+```
