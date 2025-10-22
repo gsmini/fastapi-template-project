@@ -52,7 +52,7 @@ def add_print_request_id_mid(app):
             return Response
 
         request_id = str(uuid.uuid4())
-        json_data = await request.json()
+        json_data = await request.body()  # body 兼容get情况
         request.state.request_id = request_id  # 存储到请求状态中 其他代码可以通过{getattr(request.state, 'request_id')}获取
         # print 请求输出
         logger.info(

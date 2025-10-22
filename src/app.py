@@ -9,7 +9,7 @@ from src.libs.middlerwares import add_print_request_id_mid
 
 
 def create_app():
-    app = FastAPI(title="我的fastapi服务", debug=True)
+    app = FastAPI(title="我的fastapi服务", debug=True)  # debug=True直接返回500错误信息
     origins = [
         "http://localhost.tiangolo.com",
         "https://localhost.tiangolo.com",
