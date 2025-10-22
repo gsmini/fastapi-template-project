@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from src.libs.fastapi_ import make_ok_resp
 
 router = APIRouter(
     prefix="/api/v1/admin",
@@ -9,4 +10,4 @@ router = APIRouter(
 
 @router.post("/")  # http://0.0.0.0:8000/api/v1/admin
 async def update_admin():
-    return {"message": "admin"}
+    return make_ok_resp({"username": "admin"})
