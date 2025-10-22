@@ -23,24 +23,30 @@ class User(db.Model):
     password = Column(String(32), comment="密码")
     delete_flag = Column(TINYINT(1), server_default=text("'0'"), comment="是否删除")
 
-    created_at = Column(
+    create_time = Column(
         TIMESTAMP,
         nullable=False,
         server_default=text("CURRENT_TIMESTAMP"),
         comment="创建时间",
     )
-    updated_at = Column(
+    update_time = Column(
         TIMESTAMP,
         nullable=False,
         server_default=text("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"),
         comment="更新时间",
     )
 
+
+    """
+    with db.auto_commit():会报错
+    所以改成手动commit
+    Instance <User at 0x10c35e660> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: https://sqlalche.me/e/14/bhk3)
+    """
     @classmethod
     def create(cls, username, password):
         obj = cls(username=username, password=password)
-        with db.auto_commit():
-            db.session.add(obj)
+        db.session.add(obj)
+        db.session.commit()
         return obj
 
     @classmethod
@@ -52,6 +58,6 @@ class User(db.Model):
         return {
             "user_id": self.id,
             "username": self.username,
-            "create_time": self.created_at,
-            "update_time": self.updated_at
+            "create_time": self.create_time.isoformat(),
+            "update_time": self.update_time.isoformat()
         }
