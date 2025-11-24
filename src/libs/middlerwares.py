@@ -2,7 +2,7 @@ import uuid
 from typing import AsyncGenerator, Any
 from src.libs.logging import logger
 from fastapi import FastAPI, Request, Response
-from starlette.middleware.base import Response as BaseResponse
+from starlette.responses import Response as BaseResponse
 
 
 def wrap_streaming_response_print(original_iterator: AsyncGenerator[bytes, Any], request_id: str) -> AsyncGenerator[
