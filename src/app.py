@@ -50,6 +50,7 @@ def create_app():
         logger.error(f"[exception]|request_id:{request.headers.get('request_id')}|resp={resp}")
         return JSONResponse(content=resp, status_code=e.http_code)
 
-    add_print_request_id_mid(app)
     init_routes(app)
+    add_print_request_id_mid(app)
+
     return app

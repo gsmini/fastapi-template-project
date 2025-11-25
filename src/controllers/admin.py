@@ -26,6 +26,11 @@ class QueryParams(BaseModel):
     limit: int = Field(10, ge=1, le=100, description="每页条数，1-100之间")  # 可选参数，默认10
 
 
+"""
+ curl http://0.0.0.0:8000/api/v1/admin/users
+"""
+
+
 @router.get("/users")
 async def AdminUsers(request: Request):
     query_dict = dict(request.query_params)
