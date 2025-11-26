@@ -22,7 +22,7 @@ async def update_admin():
 
 # 定义查询参数的 Pydantic 模型
 class QueryParams(BaseModel):
-    offset: int = Field(1, ge=1, description="页码，至少为1")  # 可选参数，默认1，最小值1
+    offset: int = Field(0, ge=0, description="偏移量")  # 可选参数，默认0 也就是不分页
     limit: int = Field(10, ge=1, le=100, description="每页条数，1-100之间")  # 可选参数，默认10
 
 
