@@ -47,7 +47,7 @@ def create_app():
             "message": e.message,
             "data": {}
         }
-        logger.error(f"[exception]|request_id:{request.headers.get('request_id')}|resp={resp}")
+        logger.error(f"[exception]|request_id: {request.headers.get('request_id')}|resp={resp}")
         return JSONResponse(content=resp, status_code=e.http_code)
 
     init_routes(app)
