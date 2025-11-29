@@ -72,6 +72,7 @@ docker run fastapi-template-celery:v1
 docker build . -t fastapi-template-celery-beat:v1   -f Dockerfile_Celery_Beat
 docker run fastapi-template-celery-beat:v1
 ```
+> celery worker和beat 任务修改后需要同时部署 否则可能导致代码不一致task任务无法识别等其他错误
 ## python scheduler 定时任务(方式2)
 
 ```shell
