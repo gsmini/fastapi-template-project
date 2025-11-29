@@ -52,7 +52,18 @@ docker run -p 8000:8000  fastapi-template:v6
 ## celery异步任务
 ```shell
 docker build . -t fastapi-template-celery:v1   -f Dockerfile_Celery 
+docker run fastapi-template-celery:v1
 ```
 
 
-## celery 定时任务
+## celery 定时任务（方式1）
+
+
+## python scheduler 定时任务(方式2)
+```shell
+
+```shell
+docker build . -t fastapi-template-scheduler:v1   -f Dockerfile_Scheduler 
+docker run fastapi-template-scheduler:v1
+```
+```

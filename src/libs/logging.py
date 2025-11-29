@@ -38,15 +38,15 @@ def init_logger_handler():
 
     # （可选）添加文件处理器（输出到日志文件，保留完整路径）
     #  下面可以注释掉 不过在llm项目中有利于我的本地日志定位
-    if not os.path.exists("logs"):
-        os.makedirs("logs", exist_ok=True)
-    file_handler = logging.FileHandler(
-        "logs/llm_email_process.log",
-        encoding="utf-8"  # 避免中文乱码
-    )
-    file_handler.setLevel(logging.DEBUG if DEBUG else logging.INFO)
-    file_handler.setFormatter(formatter)
-    logger.addHandler(file_handler)
+    # if not os.path.exists("logs"):
+    #     os.makedirs("logs", exist_ok=True)
+    # file_handler = logging.FileHandler(
+    #     "logs/llm_email_process.log",
+    #     encoding="utf-8"  # 避免中文乱码
+    # )
+    # file_handler.setLevel(logging.DEBUG if DEBUG else logging.INFO)
+    # file_handler.setFormatter(formatter)
+    # logger.addHandler(file_handler)
 
     return logger
 
