@@ -1,4 +1,3 @@
-# -*- coding:utf-8 -*-
 from contextlib import contextmanager
 
 from sqlalchemy import create_engine
@@ -41,6 +40,9 @@ class _SQLAlchemy:
             raise
         else:
             self.session.remove()
+
+    def remove(self):
+        self.session.remove()  #  供 Celery 中手动调用关闭 Session
 
 
 db = _SQLAlchemy()

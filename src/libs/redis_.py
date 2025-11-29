@@ -15,3 +15,5 @@ def _get_redis_client():
 
 
 rds = _get_redis_client()
+if __name__ == "__main__":
+    rds.set("a", "b", 10)
