@@ -43,15 +43,16 @@ celery -A celery_app.celery_app  worker -l info
 
 # docker 部署
 
-## docker build
-
+## web
 ```shell
-docker build . -t fastapi-template:v1
-docker run -p 8000:8000  fastapi-template:v1
+docker build . -t fastapi-template:v6
+docker run -p 8000:8000  fastapi-template:v6
 ```
 
-## docker 部署web
+## celery异步任务
+```shell
+docker build . -t fastapi-template-celery:v1   -f Dockerfile_Celery 
+```
 
-## docker 部署celery异步任务
 
-## docker 部署celery 定时任务
+## celery 定时任务
