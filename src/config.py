@@ -7,7 +7,7 @@ _load_dotenv()
 env = os.getenv
 
 ENVIRONMENT = env("ENVIRONMENT", "dev")
-DEBUG = False
+DEBUG = env("DEBUG", "False").lower() == "true"
 EXPIRES_DELTA = 24 * 30  # 30天
 # REDIS_URI
 SENTRY_DSN = env("SENTRY_DSN", "")

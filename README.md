@@ -1,10 +1,13 @@
 # fastapi-template-project
+
+fastapi + sqlalchemy orm + celery 完整案例 celery任务 celery 定时任务 docker 部署
+
 # 创建虚拟环境
-```python
- virtualenv -p ~/.pyenv/versions/3.12.1/bin/python fastapi-template-project-env
+
+```shell
+virtualenv - p ~/.pyenv/versions/3.12.1/bin/python fastapi-template-project-env
+source fastapi-template-project-env/bin/active
 ```
-
-
 
 # 数据库创建
 
@@ -17,23 +20,38 @@ mysql -u root -p
 CREATE DATABASE fastapi-template-project CHARSET=utf8mb4;
 ```
 
- 
-
 ## 业务数据库 redis
 
 ```shell
 docker run -p 6379:6379 --name fastapi-template-project-redis  -d registry.cn-shenzhen.aliyuncs.com/gsmini/redis:7
 ```
-# 启动
 
-```python
+# 本地启动
+
+## web服务
+
+```shell
 python main.py 
 ```
 
+## celery
 
-# docker build 
-```python
+```shell
+celery -A celery_app.celery_app  worker -l info   
+
+```
+
+# docker 部署
+
+## docker build
+
+```shell
 docker build . -t fastapi-template:v1
 docker run -p 8000:8000  fastapi-template:v1
 ```
 
+## docker 部署web
+
+## docker 部署celery异步任务
+
+## docker 部署celery 定时任务

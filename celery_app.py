@@ -25,7 +25,7 @@ class SQLAlchemyTask(Task):
     """Celery Task 基类，自动清理 SQLAlchemy Session"""
 
     def after_return(self, status, retval, task_id, args, kwargs, einfo):
-        db.remove()  # ✅ 每次任务结束后清理 session
+        db.remove()  # 每次任务结束后清理 session
 
 
 def make_celery():
@@ -38,7 +38,7 @@ def make_celery():
         }
     )
     celery.autodiscover_tasks(["src.tasks"])
-    celery.Task = SQLAlchemyTask  # ✅ 设置 Task 基类
+    celery.Task = SQLAlchemyTask  # 设置 Task 基类
 
     return celery
 

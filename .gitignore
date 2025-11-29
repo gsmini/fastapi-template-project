@@ -140,4 +140,6 @@ cython_debug/
 
 # PyCharm
 .idea
-
+.env_prod
+logs
+.langgraph_api
